@@ -1,22 +1,12 @@
 package ro.fasttrackit.Spring.Web.Application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 import ro.fasttrackit.Spring.Web.Application.domain.Country;
-import ro.fasttrackit.Spring.Web.Application.service.Continent;
-import ro.fasttrackit.Spring.Web.Application.service.CountryReader;
 import ro.fasttrackit.Spring.Web.Application.service.CountryService;
 
-import javax.annotation.ManagedBean;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,8 +14,13 @@ import java.util.Optional;
 @RequestMapping()
 public class CountryController {
 
-    @Autowired
+
     CountryService countryService;
+
+    @Autowired
+    public CountryController(CountryService countryService) {
+        this.countryService = countryService;
+    }
 
     @GetMapping("/countries")
     public List<Country> getAllCountries() {
